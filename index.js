@@ -16,7 +16,7 @@ app.use('/uploads',express.static('./uploads'))
 
 app.use('/',Router)
 app.get('/',(req,res)=>{
-    res.sendFile(path.join(__dirname,'build','index.html'))
+    res.send("server is ok")
 })
 app.listen(process.env.PORT,()=>{
     console.log("server is running on 2000")
