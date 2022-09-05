@@ -12,11 +12,12 @@ mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true})
 .then(res=>console.log("Database Connected")).catch(err=>console.log(err))
 app.use(cors())
 app.use(express.json())
-app.use('/uploads',express.static('./uploads'))
+app.use('/api/uploads',express.static('./uploads'))
+app.use(express.static(path.join(__dirname, 'build')));
 
-app.use('/',Router)
-app.get('/',(req,res)=>{
-    res.send("server is ok")
+app.use('/api',Router)
+app.get('/*',(req,res)=>{
+    res.sendFile(path.join(__dirname, 'build', 'index.html'));
 })
 app.listen(process.env.PORT,()=>{
     console.log("server is running on 2000")
